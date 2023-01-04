@@ -1,28 +1,43 @@
 {
-  "extends": ["plugin:cypress/recommended"],
-  "ignorePatterns": ["!**/*"],
+  "extends": [
+    "plugin:cypress/recommended",
+    "../.eslintrc.base.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {}
     },
     {
-      "files": ["src/plugins/index.js"],
+      "files": [
+        "src/plugins/index.js"
+      ],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
         "no-undef": "off"
       }
     }
-  ],
-  "plugins": ["@nrwl/nx"]
+  ]
 }
