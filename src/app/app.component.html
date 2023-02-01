@@ -1,1 +1,25 @@
-<ng-sandbox-single-responsibility></ng-sandbox-single-responsibility>
+<mat-toolbar color="primary">
+  <span>ng-sandbox</span>
+</mat-toolbar>
+<main class="content">
+  <div>
+    <h2>Single Responsibility</h2>
+    <div>
+      <ul>
+        <li>A class should have one, and only, reason to change.</li>
+        <li>Normally, all the components <i>(single-responsibility.component and widget.component)</i> with the <i>json-exporter.service</i>
+          would be in the one component. Somebody could say - Why not? <b>Because when we're describing an component in
+            the one sentence
+            and we use the 'and' word, it should be most probably divided into sub-components and the services.</b></li>
+      </ul>
+    </div>
+    <ng-sandbox-single-responsibility></ng-sandbox-single-responsibility>
+  </div>
+  <br>
+  <mat-divider></mat-divider>
+  <div>
+    <h2>Open/Closed Principle</h2>
+    <p>Software entities should be open for extensions, closed for modifications.</p>
+    <ng-sandbox-main-open-closed></ng-sandbox-main-open-closed>
+  </div>
+</main>

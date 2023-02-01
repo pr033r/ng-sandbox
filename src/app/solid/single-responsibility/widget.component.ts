@@ -11,10 +11,6 @@ import { JsonExporterService } from './json-exporter.service';
       </button>
     </div>
     <mat-divider></mat-divider>
-    <h2>Single Responsibility</h2>
-    Normally, all the components <i>(single-responsibility.component and widget.component)</i> with the <i>json-exporter.service</i>
-    would be in the one component. Somebody could say - Why not? <b>Because when we're describing an component in the one sentence
-      and we use the 'and' word, it should be most probably divided into sub-components and the services.</b><br>
     <h5>Currently</h5>
     <section class="weather-widget">
       <mat-icon class="widget-icon">wb_sunny</mat-icon>

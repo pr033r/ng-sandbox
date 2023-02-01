@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { MatButtonModule } from '@angular/material/button';
 import { SolidModule } from './solid/solid.module';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { SolidModule } from './solid/solid.module';
     NxWelcomeComponent
   ],
   imports: [
-    BrowserModule,
-    MatButtonModule,
+    MaterialModule,
     SolidModule
   ],
   providers: [],
