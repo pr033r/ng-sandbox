@@ -12,6 +12,11 @@ import { LiskovVelocityContentComponent } from './liskov-substitution-principle/
 import { LiskovWeatherContentComponent } from './liskov-substitution-principle/widget/liskov-weather-content.component';
 import { WidgetBaseDirective } from './liskov-substitution-principle/widget/widget-base.directive';
 import { WidgetComponentComponent } from './liskov-substitution-principle/widget/widget-component.component';
+import { VelocityContentInterfaceComponent } from './interface-segregation-principle/widget/velocity-content-interface.component';
+import { WeatherContentInterfaceComponent } from './interface-segregation-principle/widget/weather-content-interface.component';
+import { WidgetBaseInterfaceDirective } from './interface-segregation-principle/widget/widget-base-interface.directive';
+import { WidgetInterfaceComponent } from './interface-segregation-principle/widget/widget-interface.component';
+import { InterfaceSegregationComponent } from './interface-segregation-principle/interface-segregation.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,11 @@ import { WidgetComponentComponent } from './liskov-substitution-principle/widget
     LiskovWeatherContentComponent,
     WidgetBaseDirective,
     WidgetComponentComponent,
+    VelocityContentInterfaceComponent,
+    WeatherContentInterfaceComponent,
+    WidgetBaseInterfaceDirective,
+    WidgetInterfaceComponent,
+    InterfaceSegregationComponent,
   ],
   exports: [SingleResponsibilityComponent, MainOpenClosedComponent],
   imports: [BrowserModule, MaterialModule],
