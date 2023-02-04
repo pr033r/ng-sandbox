@@ -17,6 +17,11 @@ import { WeatherContentInterfaceComponent } from './interface-segregation-princi
 import { WidgetBaseInterfaceDirective } from './interface-segregation-principle/widget/widget-base-interface.directive';
 import { WidgetInterfaceComponent } from './interface-segregation-principle/widget/widget-interface.component';
 import { InterfaceSegregationComponent } from './interface-segregation-principle/interface-segregation.component';
+import { VelocityContentDependencyComponent } from './dependency-inversion-principle/widget/velocity-content-dependency.component';
+import { WidgetBaseDependencyDirective } from './dependency-inversion-principle/widget/widget-base-dependency.directive';
+import { WeatherContentDependencyComponent } from './dependency-inversion-principle/widget/weather-content-dependency.component';
+import { WidgetDependencyComponent } from './dependency-inversion-principle/widget/widget-dependency.component';
+import { DependencyInversionPrincipleComponent } from './dependency-inversion-principle/dependency-inversion-principle.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import { InterfaceSegregationComponent } from './interface-segregation-principle
     WidgetBaseInterfaceDirective,
     WidgetInterfaceComponent,
     InterfaceSegregationComponent,
+    VelocityContentDependencyComponent,
+    WidgetBaseDependencyDirective,
+    WeatherContentDependencyComponent,
+    WidgetDependencyComponent,
+    DependencyInversionPrincipleComponent,
   ],
   exports: [SingleResponsibilityComponent, MainOpenClosedComponent],
   imports: [BrowserModule, MaterialModule],

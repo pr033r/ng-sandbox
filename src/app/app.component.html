@@ -30,5 +30,39 @@
       If we have parent class T and child class S, where S extends T, then Liskov substitution principle means that objects of the T
       class could be <b>replaced</b> by objects of the S class.
     </p>
+  </div><br>
+  <mat-divider></mat-divider>
+  <div>
+    <h2>Interface Segregation Service</h2>
+    <p>
+      Many client-specific interfaces are better than one general-purpose interface.
+    </p>
+    <table>
+      <tr>
+        <td>
+          <b>Rather then this:</b>
+          <pre>
+            export interface WidgetContent &#x7b;
+              id: string;
+              loading: string;
+              reload(): void;
+            &#125;
+          </pre>
+        </td>
+        <td>
+          <b>Use this instead:</b>
+          <pre>
+            export interface IWidgetContent &#x7b;
+              id: string;
+            &#125;
+
+            export interface IReloadable &#x7b;
+              reload: () => any;
+              isLoading: boolean;
+            &#125;
+          </pre>
+        </td>
+      </tr>
+    </table>
   </div>
 </main>
