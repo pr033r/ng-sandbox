@@ -8,7 +8,7 @@ import { ExperimentalLoggerService } from './experimental-logger.service';
   styles: [],
   providers: [{
     provide: LoggerService,
-    useClass: ExperimentalLoggerService
+    useExisting: ExperimentalLoggerService
   }]
 })
 export class DependencyProvidersComponent implements OnInit {
@@ -22,7 +22,11 @@ export class DependencyProvidersComponent implements OnInit {
     console.log('------------------------------------------------------------');
     this.logger.log('DependencyProvidersComponent initialize');
 
+    // false for useClass, true for useExisting
+    // if we wouldn't use ExperimentalLoggerService at all, Root Injector still
+    // creates the instance, so we can easily 'use already existing' instance :-)
     console.log('LoggerService and ExperimentalLoggerService instances are same: ',
       this.logger === this.exLogger);
+
   }
 }
