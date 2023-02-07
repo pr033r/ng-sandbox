@@ -6,7 +6,7 @@ import { ILogger } from './ILogger';
 // any Angular @Injectable decorator.
 // So, for this case, we have to use 'useValue'
 export const LegacyLogger: ILogger = {
-  prefix: 'root',
+  prefix: 'LegacyLogger',
   log(message: string) {
     console.log(`${this.prefix}: ${message}`);
   }

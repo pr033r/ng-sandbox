@@ -9,6 +9,11 @@ import { ExperimentalLoggerService } from './experimental-logger.service';
   providers: [{
     provide: LoggerService,
     useExisting: ExperimentalLoggerService
+
+    // This isn't created by Angular Injector, so we need to use 'useValue'.
+    // We're using it for non-class value (legacy code, CONFIG OBJECT, ...)
+    // and with combination with InjectionToken
+    // useValue: LegacyLogger
   }]
 })
 export class DependencyProvidersComponent implements OnInit {
