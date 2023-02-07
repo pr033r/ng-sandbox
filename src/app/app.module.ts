@@ -5,6 +5,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { SolidModule } from './solid/solid.module';
 import { MaterialModule } from './material.module';
 import { ResolutionModifiersModule } from './dependency-injection/resolution-modifiers/resolution-modifiers.module';
+import { DependencyProvidersModule } from './dependency-injection/dependency-providers/dependency-providers.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ResolutionModifiersModule } from './dependency-injection/resolution-mod
   imports: [
     MaterialModule,
     SolidModule,
-    ResolutionModifiersModule
+    ResolutionModifiersModule,
+    DependencyProvidersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
