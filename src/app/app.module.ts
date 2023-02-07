@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { SolidModule } from './solid/solid.module';
 import { MaterialModule } from './material.module';
-import { ResolutionModifiersModule } from './resolution-modifiers/resolution-modifiers.module';
+import { ResolutionModifiersModule } from './dependency-injection/resolution-modifiers/resolution-modifiers.module';
 
 @NgModule({
   declarations: [
