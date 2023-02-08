@@ -2,6 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
 import { APP_CONFIG, AppConfig } from './config.token';
+import { LegacyLogger } from './logger.legacy';
 
 const LoggerFactory = (injector: Injector) => {
   return injector.get(APP_CONFIG).experimentalEnabled
@@ -27,12 +28,17 @@ const LoggerFactory = (injector: Injector) => {
 
     // Better, than to use deps[...] by hand
     useFactory: LoggerFactory,
-    deps: [Injector]
+    deps: [Injector],
+    multi: true
 
     // This isn't created by Angular Injector, so we need to use 'useValue'.
     // We're using it for non-class value (legacy code, CONFIG OBJECT, ...)
     // and with combination with InjectionToken
     // useValue: LegacyLogger
+  }, {
+    provide: LoggerService,
+    useValue: LegacyLogger,
+    multi: true
   }]
 })
 export class DependencyProvidersComponent implements OnInit {
@@ -42,9 +48,10 @@ export class DependencyProvidersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logger.prefix = 'DependencyProvidersComponent';
+    // this.logger.prefix = 'DependencyProvidersComponent';
     console.log('------------------------------------------------------------');
-    this.logger.log('DependencyProvidersComponent initialize');
+    // this.logger.log('DependencyProvidersComponent initialize');
+    console.log('What is logger: ', this.logger);
 
     // false for useClass, true for useExisting
     // if we wouldn't use ExperimentalLoggerService at all, Root Injector still

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DependencyProvidersComponent } from './dependency-providers.component';
-import { APP_CONFIG } from './config.token';
+import { REPORTERS } from './reporter.token';
+import { BrowserReporterService } from './browser-reporter.service';
+import { EngagingReporterService } from './engaging-reporter.service';
 
 @NgModule({
   declarations: [DependencyProvidersComponent],
@@ -14,6 +16,10 @@ import { APP_CONFIG } from './config.token';
     //   provide: APP_CONFIG,
     //   useValue: ...
     // }
+
+    { provide: REPORTERS, useExisting: BrowserReporterService },
+    { provide: REPORTERS, useExisting: EngagingReporterService }
   ]
 })
-export class DependencyProvidersModule {}
+export class DependencyProvidersModule {
+}
