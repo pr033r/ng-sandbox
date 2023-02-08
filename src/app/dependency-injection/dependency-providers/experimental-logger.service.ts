@@ -16,6 +16,7 @@ export class ExperimentalLoggerService implements ILogger {
   }
 
   log(message: string) {
+    this.reporters.forEach(r => r.report());
     console.log(`${this.prefix} (experimental): ${message}`);
   }
 }

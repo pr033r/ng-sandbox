@@ -17,8 +17,8 @@ import { EngagingReporterService } from './engaging-reporter.service';
     //   useValue: ...
     // }
 
-    { provide: REPORTERS, useExisting: BrowserReporterService },
-    { provide: REPORTERS, useExisting: EngagingReporterService }
+    { provide: REPORTERS, useExisting: BrowserReporterService, multi: true },
+    { provide: REPORTERS, useExisting: EngagingReporterService, multi: true }
   ]
 })
 export class DependencyProvidersModule {

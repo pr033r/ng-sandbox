@@ -6,9 +6,6 @@ import { Reporter } from './reporter';
 })
 export class EngagingReporterService implements Reporter {
 
-  constructor() {
-  }
-
   report(): void {
     console.log(`Engaging report: User has been using app ... seconds.`);
   }
