@@ -17,6 +17,7 @@ import { EngagingReporterService } from './engaging-reporter.service';
     //   useValue: ...
     // }
 
+    // There's already existing instance because of 'provideIn:root' in the service
     { provide: REPORTERS, useExisting: BrowserReporterService, multi: true },
     { provide: REPORTERS, useExisting: EngagingReporterService, multi: true }
   ]
