@@ -2,7 +2,8 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
 import { APP_CONFIG } from './config.token';
-import { LegacyLogger } from './logger.legacy';
+import { REPORTERS } from './reporter.token';
+import { BrowserReporterService } from './browser-reporter.service';
 
 const LoggerFactory = (injector: Injector) => {
   return injector.get(APP_CONFIG).experimentalEnabled
@@ -16,6 +17,7 @@ const LoggerFactory = (injector: Injector) => {
   providers: [
     {
       provide: LoggerService,
+      useClass: ExperimentalLoggerService // I want a separate instance rather
       // useExisting: ExperimentalLoggerService
 
       // Not a best practice, because when we're adding a new deps to the array,
@@ -28,9 +30,10 @@ const LoggerFactory = (injector: Injector) => {
       // deps: [APP_CONFIG]
 
       // Better, than to use deps[...] by hand
-      useFactory: LoggerFactory,
-      deps: [Injector],
-      multi: true
+      // NOTE: Factory will return existing service
+      // useFactory: LoggerFactory,
+      // deps: [Injector],
+      // multi: true
 
       // This isn't created by Angular Injector, so we need to use 'useValue'.
       // We're using it for non-class value (legacy code, CONFIG OBJECT, ...)
@@ -42,6 +45,15 @@ const LoggerFactory = (injector: Injector) => {
     //   useValue: LegacyLogger,
     //   multi: true
     // }
+    {
+      // Check the .MODULE file
+      // Configuring 'Multi Providers' on component level - other than in module.
+      // Just to provide providers which we need to this certain component.
+      // If we'll remove it, there will be resolved reporters from Root Module Injector
+      provide: REPORTERS,
+      useExisting: BrowserReporterService,
+      multi: true
+    }
   ]
 })
 export class DependencyProvidersComponent implements OnInit {

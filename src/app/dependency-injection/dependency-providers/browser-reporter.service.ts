@@ -7,7 +7,7 @@ import { Reporter } from './reporter';
 export class BrowserReporterService implements Reporter {
 
   report(): void {
-    console.log(`Browser report: 
+    console.log(`%cBrowser report: 
       Browser width - ${window.outerWidth}
       Browser height - ${window.outerHeight}`, 'color: orange;');
   }
