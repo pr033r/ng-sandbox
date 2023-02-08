@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
+import { APP_CONFIG, AppConfig } from './config.token';
 
 @Component({
   selector: 'ng-sandbox-dependency-providers',
@@ -8,8 +9,12 @@ import { ExperimentalLoggerService } from './experimental-logger.service';
   styles: [],
   providers: [{
     provide: LoggerService,
-    useExisting: ExperimentalLoggerService
-
+    // useExisting: ExperimentalLoggerService
+    useFactory: (config: AppConfig) => {
+      return config.experimentalEnabled
+        ? new ExperimentalLoggerService() : new LoggerService();
+    },
+    deps: [APP_CONFIG]
     // This isn't created by Angular Injector, so we need to use 'useValue'.
     // We're using it for non-class value (legacy code, CONFIG OBJECT, ...)
     // and with combination with InjectionToken

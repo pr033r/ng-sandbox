@@ -8,8 +8,10 @@ import { APP_CONFIG, AppConfig } from './config.token';
 export class ExperimentalLoggerService implements ILogger {
   prefix = 'root';
 
-  constructor(@Inject(APP_CONFIG) private conf: AppConfig) {
-    console.log(conf);
+  // Way how to inject the InjectionToken
+  // constructor(@Inject(APP_CONFIG) private conf: AppConfig) {
+  constructor() {
+    // console.log(conf);
   }
   log(message: string) {
     console.log(`${this.prefix} (experimental): ${message}`);
