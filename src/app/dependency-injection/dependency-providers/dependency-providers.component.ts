@@ -17,7 +17,11 @@ const LoggerFactory = (injector: Injector) => {
   providers: [
     {
       provide: LoggerService,
-      useClass: ExperimentalLoggerService // I want a separate instance rather
+
+      // I want a separate instance rather, because if we'd use 'useExisting'
+      // for REPORTERS Use Case, it'd use 'already existing' instances from the
+      // Root Module Injector (both), but here we want to provide only one
+      useClass: ExperimentalLoggerService
       // useExisting: ExperimentalLoggerService
 
       // Not a best practice, because when we're adding a new deps to the array,
