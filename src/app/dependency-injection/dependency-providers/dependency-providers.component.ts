@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { ExperimentalLoggerService } from './experimental-logger.service';
 import { APP_CONFIG, AppConfig } from './config.token';
+
+const LoggerFactory = (injector: Injector) => {
+  return injector.get(APP_CONFIG).experimentalEnabled
+    ? injector.get(ExperimentalLoggerService) : injector.get(LoggerService);
+};
 
 @Component({
   selector: 'ng-sandbox-dependency-providers',
@@ -10,11 +15,20 @@ import { APP_CONFIG, AppConfig } from './config.token';
   providers: [{
     provide: LoggerService,
     // useExisting: ExperimentalLoggerService
-    useFactory: (config: AppConfig) => {
-      return config.experimentalEnabled
-        ? new ExperimentalLoggerService() : new LoggerService();
-    },
-    deps: [APP_CONFIG]
+
+    // Not a best practice, because when we're adding a new deps to the array,
+    // we also have to add it to the factory function and with the SAME ORDER!
+    // And this is annoying, therefore 'Injector' comes to help
+    // useFactory: (config: AppConfig) => {
+    //   return config.experimentalEnabled
+    //     ? new ExperimentalLoggerService() : new LoggerService();
+    // },
+    // deps: [APP_CONFIG]
+
+    // Better, than to use deps[...] by hand
+    useFactory: LoggerFactory,
+    deps: [Injector]
+
     // This isn't created by Angular Injector, so we need to use 'useValue'.
     // We're using it for non-class value (legacy code, CONFIG OBJECT, ...)
     // and with combination with InjectionToken
