@@ -5,7 +5,7 @@ import { GalleryLoggerService } from './gallery-logger.service';
   selector: 'ng-sandbox-gallery',
   template: `
     <div class="gallery-wrap">
-      <h1 class="gallery-wrapper-text">Gallery</h1>
+      <h1 class="gallery-wrapper-text">Gallery [view providers]</h1>
       <div class="gallery-content">
         <ng-content></ng-content>
       </div>

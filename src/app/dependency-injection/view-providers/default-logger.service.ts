@@ -4,8 +4,8 @@ import { ILogger } from './ILogger';
 @Injectable({
   providedIn: 'root'
 })
-export class GalleryLoggerService implements ILogger {
-  prefix = 'GalleryLoggerService';
+export class DefaultLoggerService implements ILogger {
+  prefix = 'DefaultLoggerService';
 
   log(message: string): void {
     console.log(`${this.prefix}: ${message}`);

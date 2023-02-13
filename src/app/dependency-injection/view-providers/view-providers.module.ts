@@ -8,8 +8,11 @@ import { ViewProvidersComponent } from './view-providers.component';
   declarations: [
     GallerySlideComponent,
     GalleryComponent,
-    ViewProvidersComponent,
+    ViewProvidersComponent
   ],
   imports: [CommonModule],
+  exports: [
+    ViewProvidersComponent
+  ]
 })
 export class ViewProvidersModule {}

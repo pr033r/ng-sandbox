@@ -6,6 +6,7 @@ import { SolidModule } from './solid/solid.module';
 import { MaterialModule } from './material.module';
 import { ResolutionModifiersModule } from './dependency-injection/resolution-modifiers/resolution-modifiers.module';
 import { DependencyProvidersModule } from './dependency-injection/dependency-providers/dependency-providers.module';
+import { ViewProvidersModule } from './dependency-injection/view-providers/view-providers.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DependencyProvidersModule } from './dependency-injection/dependency-pro
     MaterialModule,
     SolidModule,
     ResolutionModifiersModule,
-    DependencyProvidersModule
+    DependencyProvidersModule,
+    ViewProvidersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
