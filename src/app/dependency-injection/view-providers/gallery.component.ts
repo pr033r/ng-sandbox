@@ -11,7 +11,7 @@ import { GalleryLoggerService } from './gallery-logger.service';
       </div>
     </div>`,
   styles: [],
-  providers: [GalleryLoggerService]
+  viewProviders: [GalleryLoggerService]
 })
 export class GalleryComponent implements OnInit {
   constructor(private logger: GalleryLoggerService) {
