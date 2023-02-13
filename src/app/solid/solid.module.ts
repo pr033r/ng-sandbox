@@ -47,7 +47,7 @@ import { DependencyInversionPrincipleComponent } from './dependency-inversion-pr
     WidgetDependencyComponent,
     DependencyInversionPrincipleComponent,
   ],
-  exports: [SingleResponsibilityComponent, MainOpenClosedComponent],
+  exports: [SingleResponsibilityComponent, MainOpenClosedComponent, DependencyInversionPrincipleComponent, DependencyInversionPrincipleComponent],
   imports: [BrowserModule, MaterialModule],
 })
 export class SolidModule {}
