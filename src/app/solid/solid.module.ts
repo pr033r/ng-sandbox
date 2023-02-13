@@ -22,6 +22,7 @@ import { WidgetBaseDependencyDirective } from './dependency-inversion-principle/
 import { WeatherContentDependencyComponent } from './dependency-inversion-principle/widget/weather-content-dependency.component';
 import { WidgetDependencyComponent } from './dependency-inversion-principle/widget/widget-dependency.component';
 import { DependencyInversionPrincipleComponent } from './dependency-inversion-principle/dependency-inversion-principle.component';
+import { SolidPrinciplesComponent } from './solid-principles.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +47,11 @@ import { DependencyInversionPrincipleComponent } from './dependency-inversion-pr
     WeatherContentDependencyComponent,
     WidgetDependencyComponent,
     DependencyInversionPrincipleComponent,
+    SolidPrinciplesComponent,
   ],
-  exports: [SingleResponsibilityComponent, MainOpenClosedComponent, DependencyInversionPrincipleComponent, DependencyInversionPrincipleComponent],
+  exports: [
+    SolidPrinciplesComponent
+  ],
   imports: [BrowserModule, MaterialModule],
 })
 export class SolidModule {}
