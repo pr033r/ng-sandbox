@@ -61,6 +61,33 @@ const LoggerFactory = (injector: Injector) => {
       &#125;;
       // ... In the component decorator
       <b>useValue</b>: <u>LegacyLogger</u>
+    </pre><br>
+
+    Configuring 'Multi Providers' on component level - other than in module.
+    Just to provide providers which we need to this certain component.
+    If we'll remove it, there will be resolved reporters from Root Module Injector
+    <pre>
+      // reporter.token.ts
+      export const <b>REPORTERS</b> = new InjectionToken&lt;Reporter&gt;('reporters');
+      
+      // dependency-providers.module.ts
+      providers: [
+        // This is not tree-shakable way, so let's set up the 'options' param in the
+        // InjectionToken, so it could be used somewhere in the constructor
+        // &#x7b;
+        //   provide: APP_CONFIG,
+        //   useValue: ...
+        // &#125;
+    
+        // There's already existing instance because of 'provideIn:root' in the service
+        &#x7b; provide: REPORTERS, useExisting: BrowserReporterService, <b>multi: true</b> &#125;,
+        &#x7b; provide: REPORTERS, useExisting: EngagingReporterService, <b>multi: true</b> &#125;
+      ]
+      
+      // ... In the component decorator
+      provide: <b>REPORTERS</b>,
+      useExisting: BrowserReporterService,
+      <b>multi: true</b>
     </pre>
   `,
   styles: [],
