@@ -34,9 +34,59 @@ import { LoggerSkipSelfService } from './logger-skip-self.service';
     Because, in the ChildDirective there's @Host() modifier, so searching for
     the provider will end up just right here - and here there's no providers!
     <pre>
+      // parent.directive.ts
       constructor(<b>@Optional() @Self()</b> private logger: LoggerHostService) &#x7b;
         if (this.logger) &#x7b;
-        this.logger.prefix = 'Parent Directive';
+          this.logger.prefix = 'Parent Directive';
+        &#125;
+      &#125;
+    </pre>
+
+    Searching for providers will end up in the parent, if there won't be any
+    providers, it will throw the error! In error case, we can use @Optional()
+    <pre>
+      <b>// child.directive.ts</b>
+      constructor(<b>@Host()</b> private logger: LoggerHostService) &#x7b;
+        if (logger) &#x7b;
+          this.logger.log('ChildDirective');
+        &#125;
+      &#125;
+      
+      <b>// parent-component.component.ts</b>
+      &lt;div <b>ngSandboxParent</b>&gt;
+        &lt;div <b>ngSandboxChild</b>&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      
+      <b>// resolution-modifiers.module.ts</b>
+      @NgModule(...)
+      export class ResolutionModifiersModule &#x7b;
+        constructor(<b>@Self()</b> private loggerSelf: <u>LoggerSelfService</u>) &#x7b;
+          if (loggerSelf) &#x7b;
+            <b style="color: red;">// Different instance than in the ResolutionModifiersComponent</b>
+            loggerSelf.log('LoggerSelf called from Module.');
+          &#125;
+        &#125;
+      &#125;
+      
+      <b>// resolution-modifiers.component.ts</b>
+      @Component(... providers: [LoggerSelfService])
+      export class ResolutionModifiersComponent &#x7b;
+          constructor(
+              <b>@Optional()</b> private logger: LoggerService,
+              <b>@Self()</b> private loggerSelf: LoggerSelfService,
+              <b>@SkipSelf()</b> private loggerSkipSelf: LoggerSkipSelfService
+            ) &#x7b;
+          if (this.logger && this.loggerSelf) &#x7b;
+            this.logger.log('LoggerOptional injected successfully.');
+          &#125;
+          if (this.loggerSelf) &#x7b;
+            <b style="color: red;">// Different instance than in ResolutionModifiersModule</b>
+            this.loggerSelf.prefix = 'ResolutionModifiersComponent';
+            this.loggerSelf.log('LoggerSelf injected successfully.');
+          &#125;
+          if (this.loggerSkipSelf) &#x7b;
+            this.loggerSkipSelf.log('LoggerSkipSelf injected successfully.');
+          &#125;
         &#125;
       &#125;
     </pre>
