@@ -30,8 +30,8 @@ import { GalleryLoggerService } from './gallery-logger.service';
                   &lt;<b>ng-content</b>&gt;&lt;<b>/ng-content</b>&gt;
                 &lt;/div&gt;
               &lt;/div&gt;\`,
-            styles: &#091;&#092;,
-            <b>viewProviders</b>: &#091;GalleryLoggerService&#092;
+            styles: &#091;&rsqb;
+            <b>viewProviders</b>: &#091;GalleryLoggerService&rsqb;
           &#125;)
         </pre>
       </div>
