@@ -7,6 +7,7 @@ import { MaterialModule } from './material.module';
 import { ResolutionModifiersModule } from './dependency-injection/resolution-modifiers/resolution-modifiers.module';
 import { DependencyProvidersModule } from './dependency-injection/dependency-providers/dependency-providers.module';
 import { ViewProvidersModule } from './dependency-injection/view-providers/view-providers.module';
+import { RootChildPatternModule } from './dependency-injection/for-root-for-child-pattern/root-child-pattern.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ViewProvidersModule } from './dependency-injection/view-providers/view-
     SolidModule,
     ResolutionModifiersModule,
     DependencyProvidersModule,
-    ViewProvidersModule
+    ViewProvidersModule,
+    RootChildPatternModule
   ],
   providers: [],
   bootstrap: [AppComponent]
