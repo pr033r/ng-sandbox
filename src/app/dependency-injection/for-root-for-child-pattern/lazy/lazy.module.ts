@@ -6,6 +6,17 @@ import { PollingModule } from '../polling/polling.module';
 
 @NgModule({
   declarations: [LazyComponent],
-  imports: [CommonModule, LazyRoutingModule, PollingModule],
+  imports: [
+    CommonModule,
+    LazyRoutingModule,
+
+    // using forChild pattern we'll provide PollingService at is defined inside
+    // the polling.module - which means with INTERVAL InjectionToken also
+    // provided (using for external configuration)
+    PollingModule.forChild({
+      interval: 3000
+    })
+  ]
 })
-export class LazyModule {}
+export class LazyModule {
+}

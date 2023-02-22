@@ -5,6 +5,13 @@ import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, PollingModule],
+  imports: [
+    CommonModule,
+
+    // because it's without using .forRoot(), then only the things inside the
+    // declarations[] will be imported - not the service!
+    PollingModule
+  ]
 })
-export class HomeModule {}
+export class HomeModule {
+}

@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
     <main>
       <router-outlet></router-outlet>
       <button mat-raised-button color="primary" routerLink="/lazy">Lazy Load</button>
+      <button mat-raised-button color="primary" routerLink="/">Root Route</button>
     </main>
   `,
   styles: [],
