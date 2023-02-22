@@ -8,8 +8,9 @@ import { HomeComponent } from './home.component';
   imports: [
     CommonModule,
 
-    // because it's without using .forRoot(), then only the things inside the
-    // declarations[] will be imported - not the service!
+    // if we'll use forRoot, it will provide services in provided array
+    // and also the declarations array. If you do not want to import declarations
+    // you can create another NgModule without declarations and return it from static method.
     PollingModule.withConfig()
   ]
 })
