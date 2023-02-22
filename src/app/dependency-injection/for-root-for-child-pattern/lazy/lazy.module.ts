@@ -13,7 +13,11 @@ import { PollingModule } from '../polling/polling.module';
     // using forChild pattern we'll provide PollingService at is defined inside
     // the polling.module - which means with INTERVAL InjectionToken also
     // provided (using for external configuration)
-    PollingModule.forChild({
+    // PollingModule.forChild({
+    //   interval: 3000
+    // })
+    // This withConfig will have configured value for the interval
+    PollingModule.withConfig({
       interval: 3000
     })
   ]

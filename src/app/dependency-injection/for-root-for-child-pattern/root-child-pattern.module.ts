@@ -17,7 +17,9 @@ import { PollingModule } from './polling/polling.module';
     // provided only what is mentioned in our forRoot() method (in our case
     // it's only service) and because it's in the main module, it will be
     // always singleton
-    PollingModule.forRoot()
+    // PollingModule.forRoot()
+    // So, this withConfig will have default value of the interval
+    PollingModule.withConfig()
   ],
   exports: [RootChildPatternComponent]
 })
