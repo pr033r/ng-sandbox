@@ -16,7 +16,12 @@ import { Component } from '@angular/core';
     for <u>fake server</u> (ideally it should be in external library). <b>HTTP Polling</b> is technique, 
     where the client <i>polls</i> the server requesting new information. The server holds
     the request open until new data is available. Once available, the server responds
-    and sends the new information. (<b>Polling EN = Dotazovani</b>).<br><br>
+    and sends the new information. (<b>Polling EN = Dotazovani</b>).
+    <br><br>
+    This pattern is only related to the modules, so it make sense that it's useful
+    <b><u>only for the lazy loaded modules</u></b> - not for eagerly loaded module. Because
+    when the module is lazy loaded, Angular will create its own Injector.
+    <br><br>
     Of course, <b>Angular</b> uses it's own forRoot and forChild patterns where it defines
     own provider tokens and services - it's only related to <b>Angular Router</b>
     <pre>
