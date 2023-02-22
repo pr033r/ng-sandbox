@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <h1>For Root &amp; For Child pattern</h1>
     <main>
       <router-outlet></router-outlet>
-      <mat-button routerLink="/lazy/">Load Lazy</mat-button>
+      <button mat-raised-button color="primary" routerLink="/lazy">Lazy Load</button>
     </main>
   `,
   styles: [],
