@@ -8,6 +8,9 @@ import { Widget } from '../widget.interface';
   styleUrls: ['./widget-wrapper-forward-ref.component.css'],
 })
 export class WidgetWrapperForwardRefComponent implements OnInit {
+  // Use to get the first element or the directive matching the selector from
+  // the content DOM. If the content DOM changes, and a new child matches
+  // the selector, the property will be updated.
   @ContentChild(WIDGET, { static: true })
   widget!: Widget;
 

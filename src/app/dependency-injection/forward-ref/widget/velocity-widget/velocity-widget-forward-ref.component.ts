@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { WIDGET } from '../widget.token';
 import { Widget } from '../widget.interface';
+
+// FORWARD REF - USE CASE 1
+// New re-usable use case, BUT with classical 'useExisting: MyComponent' it has
+// an error: "TS2449: Class 'MyComponent' used before its declaration."
+// Solution -> use forwardRef. It's also correctly used in build bundle file!
+// Reason is, that in time we declare this constant, we didn't declare our class yet.
+const WIDGET_PROVIDER = {
+  provide: WIDGET,
+  useExisting: forwardRef(() => VelocityWidgetForwardRefComponent),
+};
 
 @Component({
   selector: 'ng-sandbox-velocity-widget-forward-ref',
   templateUrl: './velocity-widget-forward-ref.component.html',
   styleUrls: ['./velocity-widget-forward-ref.component.css'],
   providers: [
-    {
-      provide: WIDGET,
-      useExisting: VelocityWidgetForwardRefComponent,
-    },
+    WIDGET_PROVIDER,
+
+    // Old Use Case - but not re-usable
+    // {
+    //   provide: WIDGET,
+    //   useExisting: VelocityWidgetForwardRefComponent,
+    // }
   ],
 })
 export class VelocityWidgetForwardRefComponent implements Widget {
