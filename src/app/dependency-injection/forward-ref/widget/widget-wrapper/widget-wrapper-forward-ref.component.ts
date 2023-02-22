@@ -8,7 +8,7 @@ import { Widget } from '../widget.interface';
   styleUrls: ['./widget-wrapper-forward-ref.component.css'],
 })
 export class WidgetWrapperForwardRefComponent implements OnInit {
-  @ContentChild(WIDGET as any, { static: true })
+  @ContentChild(WIDGET, { static: true })
   widget!: Widget;
 
   ngOnInit() {

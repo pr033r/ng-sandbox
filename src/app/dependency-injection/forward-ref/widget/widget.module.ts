@@ -20,6 +20,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatProgressBarModule,
     MatDividerModule
+  ],
+  exports: [
+    VelocityWidgetForwardRefComponent,
+    WeatherWidgetForwardRefComponent,
+    WidgetWrapperForwardRefComponent,
   ]
 })
 export class WidgetModule {}

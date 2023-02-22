@@ -8,6 +8,7 @@ import { ResolutionModifiersModule } from './dependency-injection/resolution-mod
 import { DependencyProvidersModule } from './dependency-injection/dependency-providers/dependency-providers.module';
 import { ViewProvidersModule } from './dependency-injection/view-providers/view-providers.module';
 import { RootChildPatternModule } from './dependency-injection/for-root-for-child-pattern/root-child-pattern.module';
+import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RootChildPatternModule } from './dependency-injection/for-root-for-chil
     ResolutionModifiersModule,
     DependencyProvidersModule,
     ViewProvidersModule,
-    RootChildPatternModule
+    RootChildPatternModule,
+    ForwardRefModule
   ],
   providers: [],
   bootstrap: [AppComponent]
