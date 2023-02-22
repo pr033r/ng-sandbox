@@ -10,7 +10,7 @@ import { HomeComponent } from './home.component';
 
     // because it's without using .forRoot(), then only the things inside the
     // declarations[] will be imported - not the service!
-    PollingModule
+    PollingModule.withConfig()
   ]
 })
 export class HomeModule {
