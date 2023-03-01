@@ -7,6 +7,7 @@ import { Widget } from '../widget.interface';
 // an error: "TS2449: Class 'MyComponent' used before its declaration."
 // Solution -> use forwardRef. It's also correctly used in build bundle file!
 // Reason is, that in time we declare this constant, we didn't declare our class yet.
+// Ideally have this in the separate file
 const WIDGET_PROVIDER = {
   provide: WIDGET,
   useExisting: forwardRef(() => VelocityWidgetForwardRefComponent),

@@ -9,6 +9,7 @@ import { DependencyProvidersModule } from './dependency-injection/dependency-pro
 import { ViewProvidersModule } from './dependency-injection/view-providers/view-providers.module';
 import { RootChildPatternModule } from './dependency-injection/for-root-for-child-pattern/root-child-pattern.module';
 import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref.module';
+import { InjectFunctionModule } from './dependency-injection/inject-function/inject-function.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref
     DependencyProvidersModule,
     ViewProvidersModule,
     RootChildPatternModule,
-    ForwardRefModule
+    ForwardRefModule,
+    InjectFunctionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
