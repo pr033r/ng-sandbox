@@ -89,6 +89,22 @@ import { StateMgmtService } from './state-mgmt.service';
       &#125;
     &#125;
     </pre>
+    <b>Use case 5 (new)</b> for using <i>inject()</i> - blackbox for state management. 
+    That means that externally in some function I'll inject dependencies needed
+    for do the state update of the app, call particular method and this function 
+    just call somewhere in the component. So I don't need to take care of <i>'what I
+      need to inject if I just want to update the state'</i>. This is pros, cons is
+    that I really don't know something about the deps, because this function could
+    be stored externally.
+    <pre>
+      function injectState(key: string) &#x7b;
+        const store = <b>inject</b>(Store);
+        return store.select(key)
+      &#125;
+      
+      // somewhere in the component
+      state = injectState('users');
+    </pre>
   `,
   styles: [],
 })
