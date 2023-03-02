@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
@@ -28,7 +28,21 @@ import { RouterProvidersModule } from './dependency-injection/router-providers/r
     InjectFunctionModule,
     RouterProvidersModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      multi: true, // must be
+      useValue: () => {
+        console.log('app initialization...');
+
+        // If we'd return Observable or Promise, Angular will wait until it will
+        // be resolved/completed, then it'll proceed with bootstrapping the module
+        // through .bootstrapModule(AppModule) in main.ts. So we have to resolve it
+        // via for example pipe(take(1))
+        // return interval(1000).pipe(take(1));
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
