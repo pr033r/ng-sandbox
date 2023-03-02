@@ -10,6 +10,7 @@ import { ViewProvidersModule } from './dependency-injection/view-providers/view-
 import { RootChildPatternModule } from './dependency-injection/for-root-for-child-pattern/root-child-pattern.module';
 import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref.module';
 import { InjectFunctionModule } from './dependency-injection/inject-function/inject-function.module';
+import { RouterProvidersModule } from './dependency-injection/router-providers/router-providers.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InjectFunctionModule } from './dependency-injection/inject-function/inj
     ViewProvidersModule,
     RootChildPatternModule,
     ForwardRefModule,
-    InjectFunctionModule
+    InjectFunctionModule,
+    RouterProvidersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
