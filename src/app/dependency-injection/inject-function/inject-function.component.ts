@@ -11,12 +11,12 @@ import { StateMgmtService } from './state-mgmt.service';
     in the module like providers: &lsqb; &#x7b;provide: WINDOW, useClass: ...&#125; &rsqb;
     <pre>
       export const WINDOW = new InjectionToken&lt;Window&gt;('global Window object', &#x7b;
-      providedIn: 'root',
-          factory: () => &#x7b;
-            // DEPRECATED: as second param you can provide resolution modifiers if you want
-            const platform = inject(PLATFORM_ID, InjectFlags.Optional);
-            return platform === 'browser' ? window : &#x7b;&#125; as Window;
-          &#125;
+        providedIn: 'root',
+        factory: () => &#x7b;
+          // DEPRECATED: as second param you can provide resolution modifiers if you want
+          const platform = inject(PLATFORM_ID, InjectFlags.Optional);
+          return platform === 'browser' ? window : &#x7b;&#125; as Window;
+        &#125;
       &#125;);
     </pre>
     <b>Use case 2</b> for using <i>inject()</i> - is same as the first one, but 
