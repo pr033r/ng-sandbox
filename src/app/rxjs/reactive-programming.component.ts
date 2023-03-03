@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ng-sandbox-reactive-programming',
   template: `
-    We can imagine Observables as a <b>water pipes</b> in the house. So for example
-    if we want to drink a water, we have to turn the trigger to get a water from
-    the source - .subscribe(). But we also must not to forget about turn it off
-    - unsubscribe(). The whole pipe system could be represented with some source
-    of data - <b>of(...), from(...)</b>, etc.
+    We can imagine Observables as a <b>water pipes</b> in the house. So for
+    example if we want to drink a water, we have to turn the trigger to get a
+    water from the source - .subscribe(). But we also must not to forget about
+    turn it off - unsubscribe(). The whole pipe system could be represented with
+    some source of data - <b>of(...), from(...)</b>, etc.
     <pre>
       <span style="color: green;">
       // It is important to note the difference between of and from when passing an array-like structure (including strings):
@@ -21,24 +21,25 @@ import { Component } from '@angular/core';
       // prints the elements 1 by 1. For strings the behaviour is the same, but at character level.
       </span>
     </pre>
-    
-    Also, when we need to filter the water from source, we have to use some 
-    filter - same in RxJS <b>filter(...)</b>. If we want to boil the water, also use
-    another operator - <b>map(...)</b> to transform all incoming data. When in real
-    life will be pipe broken or some another issue will come, it will break the
-    whole pipe system. Same with Observables - once there'll be some issues in
-    one operator, the whole Observable will fail and it'll jump to the catchError(...)
-    <br><br>
-    <b>Side Effects</b> - to log something or do something else - <b>tap(...)</b> operator 
-    <br><br>
-    We can also merge different streams with merge operators - <b>switchMap(...), mergeMap(...), concatMap(...)</b>
+
+    Also, when we need to filter the water from source, we have to use some
+    filter - same in RxJS <b>filter(...)</b>. If we want to boil the water, also
+    use another operator - <b>map(...)</b> to transform all incoming data. When
+    in real life will be pipe broken or some another issue will come, it will
+    break the whole pipe system. Same with Observables - once there'll be some
+    issues in one operator, the whole Observable will fail and it'll jump to the
+    catchError(...) <br /><br />
+    <b>Side Effects</b> - to log something or do something else -
+    <b>tap(...)</b> operator <br /><br />
+    We can also merge different streams with merge operators -
+    <b>switchMap(...), mergeMap(...), concatMap(...)</b>
     for better usage and avoid to nest-subscription hell.
-    <img style="width: 60%;" src="../../assets/rxjs-1.png">
-    <br><br><br>
-    
-    This would happen when we won't use the switchMap, mergeMap, concatMap, etc - subscription hell, therefore
-    we need to use merge operators.
-    <img style="width: 40%;" src="../../assets/rxjs-2.png">
+    <img style="width: 60%;" src="../../assets/rxjs-1.png" />
+    <br /><br /><br />
+
+    This would happen when we won't use the switchMap, mergeMap, concatMap, etc
+    - subscription hell, therefore we need to use merge operators.
+    <img style="width: 40%;" src="../../assets/rxjs-2.png" />
   `,
   styles: [],
 })
