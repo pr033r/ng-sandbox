@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { ConfigService } from './dependency-injection/initializer/config.service';
+import { take } from 'rxjs';
 
 @NgModule({
   providers: [
@@ -17,7 +18,11 @@ import { ConfigService } from './dependency-injection/initializer/config.service
         // return interval(1000).pipe(take(1));
 
         return () => {
-          config.
+          // bootstrap process will be blocked until the 'fetch' data will be completed
+          config.fetchEndpoints();
+
+          // bootstrap will be blocked until we get the very first value from the stream
+          return config.api$.pipe((take(1)));
         }
       },
       deps: [ConfigService]
