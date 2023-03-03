@@ -11,6 +11,7 @@ import { RootChildPatternModule } from './dependency-injection/for-root-for-chil
 import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref.module';
 import { InjectFunctionModule } from './dependency-injection/inject-function/inject-function.module';
 import { RouterProvidersModule } from './dependency-injection/router-providers/router-providers.module';
+import { InitializerModule } from './initializer.module';
 
 @NgModule({
   declarations: [
@@ -26,23 +27,10 @@ import { RouterProvidersModule } from './dependency-injection/router-providers/r
     RootChildPatternModule,
     ForwardRefModule,
     InjectFunctionModule,
-    RouterProvidersModule
+    RouterProvidersModule,
+    InitializerModule
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      multi: true, // must be
-      useValue: () => {
-        console.log('app initialization...');
-
-        // If we'd return Observable or Promise, Angular will wait until it will
-        // be resolved/completed, then it'll proceed with bootstrapping the module
-        // through .bootstrapModule(AppModule) in main.ts. So we have to resolve it
-        // via for example pipe(take(1))
-        // return interval(1000).pipe(take(1));
-      }
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
