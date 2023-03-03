@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     //   switchMap(url => this.http.get(`${url}/test`))
     // ).subscribe();
 
+    // Reactive approach which should be followed
     this.http.get(`${this.config.api}/test`).subscribe();
   }
 }

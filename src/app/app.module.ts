@@ -13,6 +13,7 @@ import { InjectFunctionModule } from './dependency-injection/inject-function/inj
 import { RouterProvidersModule } from './dependency-injection/router-providers/router-providers.module';
 import { InitializerModule } from './initializer.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppInitializerModule } from './dependency-injection/initializer/app-initializer.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     InjectFunctionModule,
     RouterProvidersModule,
     HttpClientModule,
-    InitializerModule
+    InitializerModule,
+    AppInitializerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
