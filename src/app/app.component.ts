@@ -15,9 +15,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log('AppComponent init.');
+
     // .subscribe() for execute the operator - or use 'async' is even better
+    // Old approach without using getter in ConfigService
     // this.config.api$.pipe(
     //   switchMap(url => this.http.get(`${url}/test`))
     // ).subscribe();
+
+    this.http.get(`${this.config.api}/test`).subscribe();
   }
 }

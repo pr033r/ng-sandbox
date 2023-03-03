@@ -12,6 +12,7 @@ import { ForwardRefModule } from './dependency-injection/forward-ref/forward-ref
 import { InjectFunctionModule } from './dependency-injection/inject-function/inject-function.module';
 import { RouterProvidersModule } from './dependency-injection/router-providers/router-providers.module';
 import { InitializerModule } from './initializer.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { InitializerModule } from './initializer.module';
     ForwardRefModule,
     InjectFunctionModule,
     RouterProvidersModule,
+    HttpClientModule,
     InitializerModule
   ],
   providers: [],

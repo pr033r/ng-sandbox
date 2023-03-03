@@ -23,6 +23,10 @@ export class ConfigService {
     map((endpoints) => endpoints?.api)
   );
 
+  get api() {
+    return this.endpoints.getValue()?.api;
+  }
+
   fetchEndpoints() {
     of(MOCK_DATA).subscribe({
       // if it succeeds, call next(...)
