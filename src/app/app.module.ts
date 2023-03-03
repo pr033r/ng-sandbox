@@ -14,6 +14,7 @@ import { RouterProvidersModule } from './dependency-injection/router-providers/r
 import { InitializerModule } from './initializer.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppInitializerModule } from './dependency-injection/initializer/app-initializer.module';
+import { ReactiveProgrammingModule } from './rxjs/reactive-programming.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AppInitializerModule } from './dependency-injection/initializer/app-ini
     RouterProvidersModule,
     HttpClientModule,
     InitializerModule,
-    AppInitializerModule
+    AppInitializerModule,
+    ReactiveProgrammingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

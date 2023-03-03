@@ -5,5 +5,8 @@ import { ReactiveProgrammingComponent } from './reactive-programming.component';
 @NgModule({
   declarations: [ReactiveProgrammingComponent],
   imports: [CommonModule],
+  exports: [
+    ReactiveProgrammingComponent
+  ]
 })
 export class ReactiveProgrammingModule {}
