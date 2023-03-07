@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, map, Observable, Subject, tap, zip } from 'rxjs';
+import { combineLatest, map, mergeMap, Observable, Subject, take, tap, zip } from 'rxjs';
 
 type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
+
+interface Order {
+  amount: number;
+  customerId: number;
+}
+
+interface Product {
+  product: Durum;
+  customerId: number;
+}
 
 @Component({
   selector: 'ng-sandbox-reactive-programming',
@@ -45,31 +55,38 @@ type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
     <img style="width: 40%;" src="../../assets/rxjs-2.png" />
 
     <h1>Zip & combineLatest Operator</h1>
-    <u><b>Zip operator:</b></u> waits until every stream emits an value and then it emits an 
+    <u><b>Zip operator:</b></u> waits until every stream emits an value and then it emits an
     array which contains value from every of this stream.<br>
     <u><b>combineLatest:</b></u> almost the same as Zip, but we don't need to emit <b>all</b>
     values again. So once some stream emits a new value, then it emits an array
     which contains value from every of this stream.
     <img style="width: 40%;" src="../../assets/rxjs-3.png" alt="RxJs 3">
+    <br><br>
+    <button mat-raised-button color="secondary" (click)="dispatchOrder()">Order Durum</button>
     <button mat-raised-button color="primary" (click)="_flatBread.next('flat bread')">Add Flat Bread</button>
     <button mat-raised-button color="primary" (click)="_meat.next('meat')">Add Meat</button>
     <button mat-raised-button color="primary" (click)="_sauce.next('sauce')">Add Sauce</button>
     <button mat-raised-button color="primary" (click)="_tomato.next('tomato')">Add Tomato</button>
     <button mat-raised-button color="primary" (click)="_cabbage.next('cabbage')">Add Cabbage</button>
-    <ng-container *ngIf="durum$ | async as durum">
-      <section *ngIf="durum.length > 0">
+    <ng-container *ngIf="delivery$ | async as product">
+      <section *ngIf="product.product">
         <h2>Enjoy!</h2>
         <img style="width: 30%;" src="../../assets/durum.jpg" alt="Durum">
         <h3>Ingredients:</h3>
-        <pre>{{ durum | json }}</pre>
+        <pre>{{ product | json }}</pre>
       </section>
     </ng-container>
+    <br><br>
+    <h1>SwitchMap vs MergeMap - Flattening Operators</h1>
+
   `,
   styles: []
 })
 export class ReactiveProgrammingComponent implements OnInit {
   durum$!: Observable<Durum>;
+  delivery$!: Observable<Product>;
 
+  _order = new Subject<Order>();
   _flatBread = new Subject<'flat bread'>();
   _meat = new Subject<'meat'>();
   _sauce = new Subject<'sauce'>();
@@ -81,6 +98,7 @@ export class ReactiveProgrammingComponent implements OnInit {
   private sauceCount = 0;
   private tomatoCount = 0;
   private cabbageCount = 0;
+  private customerId = 0;
 
   ngOnInit() {
     this.durum$ = zip(
@@ -102,5 +120,23 @@ export class ReactiveProgrammingComponent implements OnInit {
     // ]).pipe(
     //   tap((durum) => console.log('Enjoy!', durum))
     // );
+
+    this.delivery$ = this._order.pipe(
+      tap(order => console.log('New Drder: ', order)),
+      mergeMap( // mergeMap will subscribe under the hood
+        ({ amount, customerId }) => this.durum$.pipe(
+          take(amount), // please take a number of orders that has been ordered
+          // convert it, create an object with product and customerId
+          map((durum) => ({ product: durum, customerId }))
+        )
+      ),
+      tap(product => console.log('Delivered Product: ', product))
+    );
+  }
+
+  dispatchOrder() {
+    const amount = Math.floor(Math.random() * 3) + 1;
+    ++this.customerId;
+    this._order.next({ amount, customerId: this.customerId })
   }
 }
