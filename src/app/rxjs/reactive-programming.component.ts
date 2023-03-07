@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, tap, zip } from 'rxjs';
-import { logger } from 'nx/src/utils/logger';
+import { combineLatest, map, Observable, Subject, tap, zip } from 'rxjs';
 
 type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
 
@@ -44,10 +43,23 @@ type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
     This would happen when we won't use the switchMap, mergeMap, concatMap, etc
     - subscription hell, therefore we need to use merge operators.
     <img style="width: 40%;" src="../../assets/rxjs-2.png" />
-    
-    <h1>Zip Operator</h1>
+
+    <h1>Zip & combineLatest Operator</h1>
+    <button mat-raised-button color="primary" (click)="_flatBread.next('flat bread')">Add Flat Bread</button>
+    <button mat-raised-button color="primary" (click)="_meat.next('meat')">Add Meat</button>
+    <button mat-raised-button color="primary" (click)="_sauce.next('sauce')">Add Sauce</button>
+    <button mat-raised-button color="primary" (click)="_tomato.next('tomato')">Add Tomato</button>
+    <button mat-raised-button color="primary" (click)="_cabbage.next('cabbage')">Add Cabbage</button>
+    <ng-container *ngIf="durum$ | async as durum">
+      <section *ngIf="durum.length > 0">
+        <h2>Enjoy!</h2>
+        <img style="width: 30%;" src="../../assets/durum.jpg" alt="Durum">
+        <h3>Ingredients:</h3>
+        <pre>{{ durum | json }}</pre>
+      </section>
+    </ng-container>
   `,
-  styles: [],
+  styles: []
 })
 export class ReactiveProgrammingComponent implements OnInit {
   durum$!: Observable<Durum>;
@@ -58,15 +70,31 @@ export class ReactiveProgrammingComponent implements OnInit {
   _tomato = new Subject<'tomato'>();
   _cabbage = new Subject<'cabbage'>();
 
+  private breadCount = 0;
+  private meatCount = 0;
+  private sauceCount = 0;
+  private tomatoCount = 0;
+  private cabbageCount = 0;
+
   ngOnInit() {
     this.durum$ = zip(
-      this._flatBread,
-      this._meat,
-      this._sauce,
-      this._tomato,
-      this._cabbage
+      this._flatBread.pipe(map((ing) => `${ing}${++this.breadCount}`), tap(console.log)),
+      this._meat.pipe(map((ing) => `${ing}${++this.meatCount}`), tap(console.log)),
+      this._sauce.pipe(map((ing) => `${ing}${++this.sauceCount}`), tap(console.log)),
+      this._tomato.pipe(map((ing) => `${ing}${++this.tomatoCount}`), tap(console.log)),
+      this._cabbage.pipe(map((ing) => `${ing}${++this.cabbageCount}`), tap(console.log))
     ).pipe(
       tap((durum) => console.log('Enjoy!', durum))
     );
+
+    // this.durum$ = combineLatest([
+    //   this._flatBread.pipe(map((ing) => `${ing}${++this.breadCount}`), tap(console.log)),
+    //   this._meat.pipe(map((ing) => `${ing}${++this.meatCount}`), tap(console.log)),
+    //   this._sauce.pipe(map((ing) => `${ing}${++this.sauceCount}`), tap(console.log)),
+    //   this._tomato.pipe(map((ing) => `${ing}${++this.tomatoCount}`), tap(console.log)),
+    //   this._cabbage.pipe(map((ing) => `${ing}${++this.cabbageCount}`), tap(console.log))
+    // ]).pipe(
+    //   tap((durum) => console.log('Enjoy!', durum))
+    // );
   }
 }
