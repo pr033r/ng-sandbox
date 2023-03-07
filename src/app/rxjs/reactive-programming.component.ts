@@ -86,6 +86,8 @@ interface Product {
     <u><b>switchMap:</b></u> it will cancel the previous request and start subscribing
         the new one. It's useful within HTTP requests. We obviously want to
         resolve the new HTTP request than the old one.
+    <img src="../../assets/rxjx-4.png" alt="RxJs 4">
+    <img src="../../assets/rxjx-5.png" alt="RxJs 5">
   `,
   styles: []
 })
