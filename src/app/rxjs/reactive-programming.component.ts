@@ -78,7 +78,13 @@ interface Product {
     </ng-container>
     <br><br>
     <h1>SwitchMap vs MergeMap - Flattening Operators</h1>
-
+    <u><b>mergeMap:</b></u> it will create a queue or requests. New requests will not cancel
+        the previous requests. It will finish it gradually one by one. It's
+        useful in Logger - for example we want to send logs to the server and
+        don't want to miss some. So don't cancel previous.
+    <u><b>switchMap:</b></u> it will cancel the previous request and start subscribing
+        the new one. It's useful within HTTP requests. We obviously want to
+        resolve the new HTTP request than the old one.
   `,
   styles: []
 })
@@ -121,9 +127,19 @@ export class ReactiveProgrammingComponent implements OnInit {
     //   tap((durum) => console.log('Enjoy!', durum))
     // );
 
+    // until we don't subscribe, the stream does not exist, se have to Place an Order (button),
+    // then it'll emit a value
     this.delivery$ = this._order.pipe(
       tap(order => console.log('New Drder: ', order)),
-      mergeMap( // mergeMap will subscribe under the hood
+      // mergeMap: it will create a queue or requests. New requests will not cancel
+      //     the previous requests. It will finish it gradually one by one. It's
+      //     useful in Logger - for example we want to send logs to the server and
+      //     don't want to miss some. So don't cancel previous.
+      // switchMap: it will cancel the previous request and start subscribing
+      //     the new one. It's useful within HTTP requests. We obviously want to
+      //     resolve the new HTTP request than the old one.
+      // mergeMap will subscribe under the hood
+      mergeMap(
         ({ amount, customerId }) => this.durum$.pipe(
           take(amount), // please take a number of orders that has been ordered
           // convert it, create an object with product and customerId
