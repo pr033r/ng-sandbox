@@ -53,8 +53,8 @@ export class ReactiveProgrammingComponent implements OnInit {
   durum$!: Observable<Durum>;
 
   _flatBread = new Subject<'flat bread'>();
-  _meat = new Subject<'bread'>();
-  _souse = new Subject<'souse'>();
+  _meat = new Subject<'meat'>();
+  _sauce = new Subject<'sauce'>();
   _tomato = new Subject<'tomato'>();
   _cabbage = new Subject<'cabbage'>();
 
@@ -62,7 +62,7 @@ export class ReactiveProgrammingComponent implements OnInit {
     this.durum$ = zip(
       this._flatBread,
       this._meat,
-      this._souse,
+      this._sauce,
       this._tomato,
       this._cabbage
     ).pipe(
