@@ -45,6 +45,12 @@ type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
     <img style="width: 40%;" src="../../assets/rxjs-2.png" />
 
     <h1>Zip & combineLatest Operator</h1>
+    <u><b>Zip operator:</b></u> waits until every stream emits an value and then it emits an 
+    array which contains value from every of this stream.<br>
+    <u><b>combineLatest:</b></u> almost the same as Zip, but we don't need to emit <b>all</b>
+    values again. So once some stream emits a new value, then it emits an array
+    which contains value from every of this stream.
+    <img style="width: 40%;" src="../../assets/rxjs-3.png" alt="RxJs 3">
     <button mat-raised-button color="primary" (click)="_flatBread.next('flat bread')">Add Flat Bread</button>
     <button mat-raised-button color="primary" (click)="_meat.next('meat')">Add Meat</button>
     <button mat-raised-button color="primary" (click)="_sauce.next('sauce')">Add Sauce</button>
