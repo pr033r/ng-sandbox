@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, map, mergeMap, Observable, Subject, take, tap, zip } from 'rxjs';
+import { map, mergeMap, Observable, Subject, take, tap, zip } from 'rxjs';
 
 type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
 
@@ -47,12 +47,12 @@ interface Product {
     We can also merge different streams with merge operators -
     <b>switchMap(...), mergeMap(...), concatMap(...)</b>
     for better usage and avoid to nest-subscription hell.
-    <img style="width: 60%;" src="../../assets/rxjs-1.png" />
+    <img style="width: 60%;" src="../../assets/rxjs-1.png" alt="RxJS 1" />
     <br /><br /><br />
 
     This would happen when we won't use the switchMap, mergeMap, concatMap, etc
     - subscription hell, therefore we need to use merge operators.
-    <img style="width: 40%;" src="../../assets/rxjs-2.png" />
+    <img style="width: 40%;" src="../../assets/rxjs-2.png" alt="RxJS 2" />
 
     <h1>Zip & combineLatest Operator</h1>
     <u><b>Zip operator:</b></u> waits until every stream emits an value and then it emits an
@@ -86,8 +86,8 @@ interface Product {
     <u><b>switchMap:</b></u> it will cancel the previous request and start subscribing
         the new one. It's useful within HTTP requests. We obviously want to
         resolve the new HTTP request than the old one.<br>
-    <img style="width: 30%;" src="../../assets/rxjx-4.png" alt="RxJs 4"><br>
-    <img style="width: 30%;" src="../../assets/rxjx-5.png" alt="RxJs 5">
+    <img style="width: 30%;" src="../../assets/rxjs-4.png" alt="RxJs 4"><br>
+    <img style="width: 30%;" src="../../assets/rxjs-5.png" alt="RxJs 5">
   `,
   styles: []
 })
@@ -133,7 +133,7 @@ export class ReactiveProgrammingComponent implements OnInit {
     // until we don't subscribe, the stream does not exist, se have to Place an Order (button),
     // then it'll emit a value
     this.delivery$ = this._order.pipe(
-      tap(order => console.log('New Drder: ', order)),
+      tap(order => console.log('New Order: ', order)),
       // Both of them will subscribe the stream under the hood.
       // mergeMap: it will create a queue or requests. New requests will not cancel
       //     the previous requests. It will finish it gradually one by one. It's
