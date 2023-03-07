@@ -78,7 +78,8 @@ interface Product {
     </ng-container>
     <br><br>
     <h1>SwitchMap vs MergeMap - Flattening Operators</h1>
-    <u><b>mergeMap:</b></u> it will create a queue or requests. New requests will not cancel
+    Both of them will subscribe the stream under the hood.
+    <u><b>mergeMap:</b></u> <i>(flatMap in the past)</i> it will create a queue or requests. New requests will not cancel
         the previous requests. It will finish it gradually one by one. It's
         useful in Logger - for example we want to send logs to the server and
         don't want to miss some. So don't cancel previous.
@@ -131,6 +132,7 @@ export class ReactiveProgrammingComponent implements OnInit {
     // then it'll emit a value
     this.delivery$ = this._order.pipe(
       tap(order => console.log('New Drder: ', order)),
+      // Both of them will subscribe the stream under the hood.
       // mergeMap: it will create a queue or requests. New requests will not cancel
       //     the previous requests. It will finish it gradually one by one. It's
       //     useful in Logger - for example we want to send logs to the server and
