@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable, Subject, tap, zip } from 'rxjs';
+import { logger } from 'nx/src/utils/logger';
+
+type Durum = ['flat bread', 'meat', 'sauce', 'tomato', 'cabbage'];
 
 @Component({
   selector: 'ng-sandbox-reactive-programming',
@@ -40,7 +44,29 @@ import { Component } from '@angular/core';
     This would happen when we won't use the switchMap, mergeMap, concatMap, etc
     - subscription hell, therefore we need to use merge operators.
     <img style="width: 40%;" src="../../assets/rxjs-2.png" />
+    
+    <h1>Zip Operator</h1>
   `,
   styles: [],
 })
-export class ReactiveProgrammingComponent {}
+export class ReactiveProgrammingComponent implements OnInit {
+  durum$!: Observable<Durum>;
+
+  _flatBread = new Subject<'flat bread'>();
+  _meat = new Subject<'bread'>();
+  _souse = new Subject<'souse'>();
+  _tomato = new Subject<'tomato'>();
+  _cabbage = new Subject<'cabbage'>();
+
+  ngOnInit() {
+    this.durum$ = zip(
+      this._flatBread,
+      this._meat,
+      this._souse,
+      this._tomato,
+      this._cabbage
+    ).pipe(
+      tap((durum) => console.log('Enjoy!', durum))
+    );
+  }
+}
