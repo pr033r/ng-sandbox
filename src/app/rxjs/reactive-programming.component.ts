@@ -79,13 +79,20 @@ interface Product {
     <br><br>
     <h1>SwitchMap vs MergeMap - Flattening Operators</h1>
     Both of them will subscribe the stream under the hood.<br>
-    <u><b>mergeMap:</b></u> <i>(flatMap in the past)</i> it will create a queue or requests. New requests will not cancel
+    <ul>
+      <li>
+        <u><b>mergeMap:</b></u> <i>(flatMap in the past)</i> it will create a queue or requests. New requests will not cancel
         the previous requests. It will finish it gradually one by one. It's
         useful in Logger - for example we want to send logs to the server and
-        don't want to miss some. So don't cancel previous.<br><br>
-    <u><b>switchMap:</b></u> it will cancel the previous request and start subscribing
+        don't want to miss some. So don't cancel previous.
+      </li>
+      <li>
+        <u><b>switchMap:</b></u> it will cancel the previous request and start subscribing
         the new one. It's useful within HTTP requests. We obviously want to
-        resolve the new HTTP request than the old one.<br>
+        resolve the new HTTP request than the old one.
+      </li>
+    </ul>
+    <br><br>
     <img style="width: 30%;" src="../../assets/rxjs-4.png" alt="RxJs 4"><br>
     <img style="width: 30%;" src="../../assets/rxjs-5.png" alt="RxJs 5">
   `,
