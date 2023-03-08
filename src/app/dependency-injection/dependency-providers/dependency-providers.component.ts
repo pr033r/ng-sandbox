@@ -13,6 +13,24 @@ const LoggerFactory = (injector: Injector) => {
 @Component({
   selector: 'ng-sandbox-dependency-providers',
   template: `
+    <ul>
+      <li>
+        <b>useFactory</b> takes a factory function that is expected to return the value and also can have dependencies 
+        (require instances of other providers passed as parameter)
+      </li>
+      See for example the <b>config:ConfigService</b> parameter required by the factory function in 
+      <a href="https://stackoverflow.com/questions/37611549/how-to-pass-parameters-rendered-from-backend-to-angular2-bootstrap-method/37611614#37611614" target="_blank">
+        How to pass parameters rendered from backend to angular2 bootstrap method</a>
+      
+      <li><b>useValue</b> is just the value that is injected as is</li>
+      <li>
+        <b>useClass</b> expects a type name and Angular creates an instance from the passed type and also resolves and 
+        passes constructor parameters to the class if there are any
+      </li>
+      <li>
+        <b>useExisting</b> which is like an alias for an already registered provider. The use case is to provide the same instance of a provider with different keys
+      </li>
+    </ul>
     I want a separate instance rather, because if we'd use 'useExisting'
     for REPORTERS Use Case, it'd use 'already existing' instances from the
     Root Module Injector (both), but here we want to provide only one

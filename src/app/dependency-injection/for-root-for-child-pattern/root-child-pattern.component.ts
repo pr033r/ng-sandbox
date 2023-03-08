@@ -11,8 +11,8 @@ import { Component } from '@angular/core';
     </main><br>
     In old Angular, it was useful when we wanted to share same instance of the
     service though multiple components. Without using this pattern, Injector
-    has created a new instance, hence the service <b>wasn't singleton</b>. That's
-    was main use case of the forRoot / forChild pattern. Here it this example
+    has created a new instance, hence the service <b>wasn't singleton</b>. That
+    was main use case of the forRoot / forChild pattern. Here, in this example
     it's the timer functionality which is <b>sharing the same Observable</b>. Without using
     forRoot / forChild it'd create a new instance for each route - so the timer
     has started from the beginning.<br><br>

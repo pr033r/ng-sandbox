@@ -48,12 +48,12 @@ interface Product {
     <b>switchMap(...), mergeMap(...), concatMap(...)</b>
     for better usage and avoid to nest-subscription hell.
     <img style="width: 60%;" src="../../assets/rxjs-1.png" alt="RxJS 1" />
-    <br /><br /><br />
-
+    <br><br>
     This would happen when we won't use the switchMap, mergeMap, concatMap, etc
     - subscription hell, therefore we need to use merge operators.
+    <br><br>
     <img style="width: 40%;" src="../../assets/rxjs-2.png" alt="RxJS 2" />
-
+    <br><br>
     <h1>Zip & combineLatest Operator</h1>
     <u><b>Zip operator:</b></u> waits until every stream emits an value and then it emits an
     array which contains value from every of this stream.<br>
